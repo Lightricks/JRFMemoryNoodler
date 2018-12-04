@@ -34,4 +34,20 @@ typedef BOOL (^JRFCrashDetector)();
 + (void)beginMonitoringMemoryEventsWithHandler:(nonnull JRFOutOfMemoryEventHandler)handler
                                  crashDetector:(nullable JRFCrashDetector)crashDetector;
 
+
+/**
+  You should call this when your application receives a silent push notification. This will allow JRFMemoryNoodler to track an application launch that occurred from a silent push notification.
+  Call this if your application is not in the foreground and during:
+  `- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))fetchCompletionHandler`
+ */
++ (void)markSilentPushNotificationEvent;
+
+/**
+ You should call this when your application wakes up to perform work in the background. This will allow JRFMemoryNoodler to track an application launch that occurred from a silent push notification.
+ Call this during:
+ `- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))fetchCompletionHandler`
+ */
++ (void)markBackgroundFetchEvent;
+
 @end
+

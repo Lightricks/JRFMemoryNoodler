@@ -49,6 +49,16 @@
     [self checkMemoryNoodlerWithExpectation:NO shouldBeInForeground:NO didCrash:YES];
 }
 
+- (void)testSilentPushNotificationDoesNotTriggerOutOfMemoryWarning {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"JRFSilentPushNotificationKey"];
+    [self checkMemoryNoodlerWithExpectation:NO shouldBeInForeground:YES didCrash:NO];
+}
+
+- (void)testBackgroundFetchDoesNotTriggerOutOfMemoryWarning {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"JRFBackgroundFetchKey"];
+    [self checkMemoryNoodlerWithExpectation:NO shouldBeInForeground:YES didCrash:NO];
+}
+
 - (void)testIntentionalQuitPathNameIsStable {
     const char *pathname1 = [JRFPathUtilities intentionalQuitPathname];
     const char *pathname2 = [JRFPathUtilities intentionalQuitPathname];
