@@ -18,6 +18,9 @@ NSString *JRFAppWasTerminatedKey = @"JRFAppWasTerminatedKey";
 NSString *JRFAppWasInBackgroundKey = @"JRFAppWasInBackgroundKey";
 NSString *JRFAppDidCrashKey = @"JRFAppDidCrashKey";
 NSString *JRFPreviousOSVersionKey = @"JRFPreviousOSVersionKey";
+NSString *JRFSilentPushNotificationKey = @"JRFSilentPushNotificationKey";
+NSString *JRFBackgroundFetchKey = @"JRFBackgroundFetchKey";
+
 static char *intentionalQuitPathname;
 
 @implementation JRFMemoryNoodler
@@ -47,11 +50,14 @@ static char *intentionalQuitPathname;
         // A file exists at the path, we had an intentional quit
         didIntentionallyQuit = YES;
     }
+
     BOOL didCrash = detector();
     BOOL didTerminate = [defaults boolForKey:JRFAppWasTerminatedKey];
     BOOL didUpgradeApp = ![[self currentBundleVersion] isEqualToString:[self previousBundleVersion]];
     BOOL didUpgradeOS = ![[self currentOSVersion] isEqualToString:[self previousOSVersion]];
-    if (!(didIntentionallyQuit || didCrash || didTerminate || didUpgradeApp || didUpgradeOS)) {
+    BOOL didReceiveSilentPushNotification = [[NSUserDefaults standardUserDefaults] boolForKey:JRFSilentPushNotificationKey];
+    BOOL didBackgroundFetch = [[NSUserDefaults standardUserDefaults] boolForKey:JRFBackgroundFetchKey];
+    if (!(didIntentionallyQuit || didCrash || didTerminate || didUpgradeApp || didUpgradeOS || didReceiveSilentPushNotification || didBackgroundFetch)) {
         if (handler) {
             BOOL wasInBackground = [[NSUserDefaults standardUserDefaults] boolForKey:JRFAppWasInBackgroundKey];
             handler(!wasInBackground);
@@ -63,6 +69,8 @@ static char *intentionalQuitPathname;
     [defaults setBool:NO forKey:JRFAppWasTerminatedKey];
     [defaults setBool:NO forKey:JRFAppWasInBackgroundKey];
     [defaults setBool:NO forKey:JRFAppDidCrashKey];
+    [defaults setBool:NO forKey:JRFSilentPushNotificationKey];
+    [defaults setBool:NO forKey:JRFBackgroundFetchKey];
     [defaults synchronize];
     // Remove intentional quit file
     unlink(intentionalQuitPathname);
@@ -154,6 +162,18 @@ static void JRFIntentionalQuitHandler(int signal) {
     return ^() {
         return [[NSUserDefaults standardUserDefaults] boolForKey:JRFAppDidCrashKey];
     };
+}
+
+#pragma mark - Silent Push Notifications
+
++ (void)markSilentPushNotificationEvent {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:JRFSilentPushNotificationKey];
+}
+
+#pragma mark - Background Fetch Notifications
+
++ (void)markBackgroundFetchEvent {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:JRFBackgroundFetchKey];
 }
 
 @end
