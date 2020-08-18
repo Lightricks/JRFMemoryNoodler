@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 jflinter. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 @interface JRFMemoryNoodler : NSObject
 

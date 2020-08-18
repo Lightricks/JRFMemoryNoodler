@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 jflinter. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 #import "JRFMemoryNoodler.h"
 #import "JRFPathUtilities.h"

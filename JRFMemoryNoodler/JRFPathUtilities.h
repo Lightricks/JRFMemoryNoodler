@@ -6,7 +6,7 @@
 //  Copyright © 2016 jflinter. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 @interface JRFPathUtilities : NSObject
 
