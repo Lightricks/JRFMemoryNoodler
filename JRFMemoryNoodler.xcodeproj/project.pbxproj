@@ -14,6 +14,7 @@
 		A275D8E71CB43035005A5AD5 /* JRFPathUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = A275D8E51CB43035005A5AD5 /* JRFPathUtilities.h */; };
 		A275D8E81CB43035005A5AD5 /* JRFPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A275D8E61CB43035005A5AD5 /* JRFPathUtilities.m */; };
 		A275D8E91CB43035005A5AD5 /* JRFPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A275D8E61CB43035005A5AD5 /* JRFPathUtilities.m */; };
+		CECBB51C24ED6AD400EE4A73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CECBB51B24ED6AD400EE4A73 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		049635BF1B93E97500FF2F72 /* JRFMemoryNoodler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFMemoryNoodler.m; sourceTree = "<group>"; };
 		A275D8E51CB43035005A5AD5 /* JRFPathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFPathUtilities.h; sourceTree = "<group>"; };
 		A275D8E61CB43035005A5AD5 /* JRFPathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFPathUtilities.m; sourceTree = "<group>"; };
+		CECBB51B24ED6AD400EE4A73 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CECBB51C24ED6AD400EE4A73 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +66,7 @@
 				049635A51B93E96400FF2F72 /* JRFMemoryNoodler */,
 				049635B21B93E96400FF2F72 /* JRFMemoryNoodlerTests */,
 				049635A41B93E96400FF2F72 /* Products */,
+				CECBB51A24ED6AD300EE4A73 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +114,14 @@
 				049635B41B93E96400FF2F72 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CECBB51A24ED6AD300EE4A73 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CECBB51B24ED6AD400EE4A73 /* UIKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +197,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 049635991B93E96400FF2F72;
@@ -412,6 +425,7 @@
 				049635BB1B93E96400FF2F72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		049635BC1B93E96400FF2F72 /* Build configuration list for PBXNativeTarget "JRFMemoryNoodlerTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +434,7 @@
 				049635BE1B93E96400FF2F72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
